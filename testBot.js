@@ -1,4 +1,6 @@
 const Discord = require("discord.js");
+const stayAwake = require("./service")
+
 const client = new Discord.Client();
 require("dotenv").config();
 
@@ -32,4 +34,6 @@ client.on("message", async (message) => {
   }
 });
 
+
+stayAwake();
 client.login(process.env.KEY);
