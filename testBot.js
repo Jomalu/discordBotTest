@@ -25,7 +25,7 @@ client.on("message", async (message) => {
         (role) => role.name === "Example Role"
       );
       const member = message.guild.members.cache.get(user.id);
-      console.log("member has role: ", member).roles.cache.has(role.id);
+      console.log("member has role: ", member.roles.cache.has(role.id));
 
       if (member.roles.cache.has(role.id)) return;
 
