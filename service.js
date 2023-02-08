@@ -13,7 +13,7 @@ app.all("/health", (req, res) => {
 
 const stayAwake = () => {
   app.listen(PORT, () => {
-    console.log("Bot is running.");
+    console.log(`Bot is running in port ${PORT}.`);
   });
 };
 
