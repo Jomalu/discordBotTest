@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const stayAwake = require("./service")
+const stayAwake = require("./service");
 
 const client = new Discord.Client();
 require("dotenv").config();
@@ -19,6 +19,8 @@ client.on("message", async (message) => {
       reaction.emoji.name === "✅" && user.id !== client.user.id;
     const collector = exampleMessage.createReactionCollector(filter);
 
+    console.log("collector", collector);
+
     collector.on("collect", async (reaction) => {
       const user = reaction.users.cache.last();
       const role = message.guild.roles.cache.find(
@@ -26,14 +28,18 @@ client.on("message", async (message) => {
       );
       const member = message.guild.members.cache.get(user.id);
 
+      console.log("user", user);
+      console.log("role", role);
+      console.log("member", member);
+
       if (member.roles.cache.has(role.id)) return;
 
+      console.log("got to adding");
       await member.roles.add(role);
       await user.send(`You have been given the "${role.name}" role.`);
     });
   }
 });
-
 
 stayAwake();
 client.login(process.env.KEY);
